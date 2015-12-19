@@ -3,11 +3,11 @@ sudo: false
 
 install:
   - perlbrew list
+  - cpanm https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/Clustericious-1.12.tar.gz
   - dzil authordeps --missing | cpanm -n
   - dzil listdeps   --missing | cpanm -n
 
 perl:
-  - "5.8"
   - "5.10"
   - "5.12"
   - "5.14"
