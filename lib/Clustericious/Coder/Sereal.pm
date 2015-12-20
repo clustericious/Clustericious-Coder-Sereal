@@ -26,7 +26,7 @@ L<Clustericious>
 
 sub coder
 {
-  my $encoder = Sereal::Encoder->new;
+  my $encoder = Sereal::Encoder->new({ protocol_version => 2 });
   my $decoder = Sereal::Decoder->new;
 
   my %coder = (

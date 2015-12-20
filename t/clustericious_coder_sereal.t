@@ -7,7 +7,6 @@ use Sereal::Decoder qw( decode_sereal );
 
 my $cluster = Test::Clustericious::Cluster->new;
 $cluster->create_cluster_ok('MyApp');
-
 my $t = $cluster->t;
 
 my $mytest = {
@@ -22,14 +21,14 @@ subtest 'get with extension' => sub {
   $t->get_ok('/mytest.srl')
     ->status_is(200)
     ->header_is('Content-Type' => 'application/sereal');
-  is_deeply(decode_sereal($t->tx->res->text), $mytest, 'structure is good');
+  is_deeply(decode_sereal($t->tx->res->body), $mytest, 'structure is good');
 };
 
 subtest 'get with accept' => sub {
   $t->get_ok('/mytest', { Accept => 'application/sereal' })
     ->status_is(200)
     ->header_is('Content-Type' => 'application/sereal');
-  is_deeply(decode_sereal($t->tx->res->text), $mytest, 'structure is good');
+  is_deeply(decode_sereal($t->tx->res->body), $mytest, 'structure is good');
 };
 
 subtest 'post' => sub {
